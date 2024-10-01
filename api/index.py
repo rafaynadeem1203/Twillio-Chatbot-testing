@@ -518,6 +518,10 @@ def sms_reply():
                         # Handle cases where workorder is not found or error occurred
                         reply = "Workorder does not exist"
                     else:
+                        keys = ['woID', 'date', 'startDate', 'endDate', 'description', 'siteName', 'status']
+                        values = workorder_details  # The tuple data you're working with
+                        workorder_details = dict(zip(keys, workorder_details))
+
                         reply = f"Workorder Details:\nWorkorder ID: {workorder_details['woID']}\nDate: {workorder_details['date']}\nStart Date & Time: {workorder_details['startDate']}\nEnd Date & Time: {workorder_details['endDate']}\nDescription: {workorder_details['description']}\nSite Name: {workorder_details['siteName']}\nStatus: {'Completed' if workorder_details['status'] else 'Pending'}"
                         
                     user_session['second_menu'] = None  # Reset the second menu

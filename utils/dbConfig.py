@@ -4,7 +4,7 @@ from flask_pymongo import pymongo
 
 def connect():
     try:
-        CONNECTION_STRING = "mongodb://localhost:27017"
+        CONNECTION_STRING = "mongodb+srv://rafay:awAvaXailhZZabF9@cluster0.nvqyp.mongodb.net/?retryWrites=true&w=majority"
         return  pymongo.MongoClient(CONNECTION_STRING)
 
     except Exception as e:

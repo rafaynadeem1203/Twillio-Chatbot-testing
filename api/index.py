@@ -514,7 +514,7 @@ def sms_reply():
                 if second_menu == 'viewworkorder':
                     workorderID = msg  # Assuming the message contains the id of the workorder to view
                     workorder_details = get_workorder_by_id(workorderID,'workorder')
-                    if employee_id=="Workorder not found":
+                    if workorder_details=="Workorder not found":
                         # Handle cases where workorder is not found or error occurred
                         reply = "Workorder does not exist"
                     else:

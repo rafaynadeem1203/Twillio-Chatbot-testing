@@ -44,7 +44,7 @@ def get_workorder_by_id(id,dbname):
         client = connect()
         db = client.get_database(dbname)
         user_collection = db.workorders
-        workorder_details = user_collection.find_one({"woID": id})
+        workorder_details = user_collection.find_one({"woID": int(id)})
         workorder_details["_id"]=str(workorder_details["_id"])
         client.close()
         

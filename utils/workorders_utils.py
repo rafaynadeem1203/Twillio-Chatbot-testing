@@ -46,9 +46,6 @@ def get_workorder_by_id(id,dbname):
         user_collection = db.workorders
         workorder_details = user_collection.find_one({"woID": id})
         workorder_details["_id"]=str(workorder_details["_id"])
-        workorder_details['date']=format_date(workorder_details['date'])
-        workorder_details['startDate']=format_date(workorder_details['date'])
-        workorder_details['endDate']=format_date(workorder_details['date'])
         client.close()
         
         if workorder_details:

@@ -497,7 +497,7 @@ def sms_reply():
                         f"Status: {'Completed' if workorder['status'] else 'Pending'}"
                         for workorder in workorders
                     ])            
-                        message_chunks = split_message(workorder_list)
+                        message_chunks = split_message(reply)
                         for chunk in message_chunks:
                             resp.message(chunk) 
                     else:

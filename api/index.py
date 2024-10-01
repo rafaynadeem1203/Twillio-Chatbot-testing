@@ -487,7 +487,7 @@ def sms_reply():
                     workorders = get_workorders('workorder')
                     print(workorders)
                     if workorders:
-                        reply +=.join([
+                        reply +="".join([
                         f"WO #: {workorder['woID']}\n"
                         f"Date: {workorder['date']}\n"
                         f"Start Date: {workorder['startDate'] if workorder['startDate'] else 'Not specified'}\n"

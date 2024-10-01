@@ -17,6 +17,9 @@ app.config['SECRET_KEY'] = 'mysecretkeyjuni'
 def hello():
     return "Welcome to the Inventory Management Website"
 
+def split_message(message, max_length=1600):
+    return [message[i:i + max_length] for i in range(0, len(message), max_length)]
+
 
 @app.route("/sms", methods=['POST'])
 def sms_reply():
@@ -494,11 +497,12 @@ def sms_reply():
                         f"Status: {'Completed' if workorder['status'] else 'Pending'}"
                         for workorder in workorders
                     ])            
-                        
+                        message_chunks = split_message(workorder_list)
+                        for chunk in message_chunks:
+                            resp.message(chunk) 
                     else:
-                        reply="Failed to fetch workorders"
+                            resp.message("Failed to fetch workorders")
                     session[user_phone] = user_session
-                    resp.message(reply)
                     return str(resp)
                 elif msg=='3':
                     session.clear()

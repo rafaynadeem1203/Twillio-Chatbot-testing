@@ -484,7 +484,7 @@ def sms_reply():
                     workorders = get_workorders('workorder')
                     print(workorders)
                     if workorders:
-                        workorder_list = "\n\n".join([
+                        reply += "\n\n".join([
                         f"WO #: {workorder['woID']}\n"
                         f"Date: {workorder['date']}\n"
                         f"Start Date: {workorder['startDate'] if workorder['startDate'] else 'Not specified'}\n"
@@ -494,10 +494,11 @@ def sms_reply():
                         f"Status: {'Completed' if workorder['status'] else 'Pending'}"
                         for workorder in workorders
                     ])            
-                        resp.message(f"Products:\n{workorder_list}")
+                        
                     else:
-                        resp.message("Failed to fetch product data")
+                        reply="Failed to fetch workorders"
                     session[user_phone] = user_session
+                    resp.message(reply)
                     return str(resp)
                 elif msg=='3':
                     session.clear()

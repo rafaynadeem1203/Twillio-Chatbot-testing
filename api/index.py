@@ -17,6 +17,7 @@ app.config['SECRET_KEY'] = 'mysecretkeyjuni'
 def hello():
     return "Welcome to the Inventory Management Website"
 
+
 def split_message(message, max_length=1600):
     return [message[i:i + max_length] for i in range(0, len(message), max_length)]
 
@@ -34,7 +35,7 @@ def sms_reply():
     resp = MessagingResponse()
 
     if user_session['first_time']:
-        reply = "Welcome to the Inventory Management Website\n1. Information regarding Products\n2. Information regarding Suppliers\n3. Information regarding Employees\n4. Type reset to reset\n5. General information about the whole system"
+        reply = "Welcome to the Inventory Management Website\n1. Information regarding Products\n2. Information regarding Suppliers\n3. Information regarding Employees\n4. Information regarding workorders\n5. General information about the whole system\n\n\nType reset to reset"
         print("reply in first_ti1me",reply)
         user_session['first_time'] = False
         session[user_phone] = user_session
@@ -62,12 +63,12 @@ def sms_reply():
                 first_menu = 'employeemenu'
                 reply = "1. Add an employee\n2. Remove an employee\n3. Edit an employee\n4. Show all the employees\n5. Get employee by name\n6. Return to the main menu"
 
-            elif msg == '5':
+            elif msg == '4':
                 user_session['first_menu']='workordermenu'
                 first_menu='workordermenu'
                 reply="1. Show Workorders based on Wo#\n2. Show All workorders\n3. Return to main menu"
 
-            elif msg == '6':
+            elif msg == '5':
                 user_session['first_menu'] = 'general'
                 first_menu = 'general'
                 reply = "What's your question? Free feel to ask any question related to Inventory Management System"
@@ -533,7 +534,6 @@ def sms_reply():
                     session[user_phone] = user_session
                     resp.message(reply)
                     return str(resp)  
-                
     #if the above conditions are not working
     print("Before sending the response: ",reply)
     session[user_phone] = user_session
